@@ -1,24 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight, Heart, ShieldCheck, Truck, MessageCircle, PawPrint, Scissors, BadgeCheck } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import family from '@/assets/pet-family.jpg';
+import { categories, meta, whatsapp } from '@/lib/store';
+export const Route=createFileRoute('/')({head:()=>meta('Pet food, happy paws & a little love','Your neighbourhood pet store in Anand Vihar, Delhi. Explore genuine dog and cat food, treats, toys and gentle grooming. Free home delivery across Delhi NCR.'),component:Home});
+function Home(){return <main><section className="hero"><img className="hero-img" src={family} alt="A happy golden retriever and ginger cat together at home" width={1920} height={1024}/><div className="wrap"><div className="hero-content"><div className="eyebrow"><PawPrint size={14}/> Your neighbourhood pet store, online</div><h1>L.W Pet Care<br/>For their <em>happiest</em><br/>little lives.</h1><p>Good food, playful moments and thoughtful care.<br/>Everything for the family with four paws.</p><div className="hero-buttons"><Button asChild><Link to="/dogs">Shop for dogs <ArrowRight/></Link></Button><Button variant="outline" asChild><Link to="/cats">Shop for cats <ArrowRight/></Link></Button></div><div className="hero-foot"><Heart size={13}/> We treat your pets like family. Always.</div></div></div><div className="hero-dots"><span/></div></section>
+ <div className="trust-bar"><div className="wrap trust-inner">{[{Icon:ShieldCheck,title:'100% genuine products',text:'Trusted brands. Nothing less.'},{Icon:Truck,title:'Free Delhi NCR delivery',text:'From our store to your doorstep.'},{Icon:Heart,title:'Care that feels like family',text:'For every paw, at every stage.'},{Icon:MessageCircle,title:'A real person, ready to help',text:'Just a call or WhatsApp away.'}].map(({Icon,title,text})=><div className="trust-item" key={title}><Icon/><div><strong>{title}</strong><small>{text}</small></div></div>)}</div></div>
+ <section className="wrap section"><div className="section-heading"><div><h2>Who are we shopping for?</h2><p>Big personalities. Little paws. All the love.</p></div></div><div className="pet-grid"><div className="pet-tile"><img src={family} alt="Golden retriever" loading="lazy"/><div className="tile-copy"><h3>For your dog</h3><p>Tail-wagging favourites for your best friend.</p><Link to="/dogs">Explore dog essentials <ArrowRight size={15}/></Link></div></div><div className="pet-tile cat"><img src={family} alt="Ginger cat" loading="lazy"/><div className="tile-copy"><h3>For your cat</h3><p>Purr-worthy picks for your little royalty.</p><Link to="/cats">Explore cat essentials <ArrowRight size={15}/></Link></div></div></div></section>
+ <section className="wrap section pt-2"><div className="section-heading"><div><h2>A little of everything they love</h2><p>Everyday essentials, extraordinary happiness.</p></div><Link to="/brand/$name" params={{name:'all'}}>Explore all <ArrowRight size={14}/></Link></div><div className="category-grid">{categories.map(c=><Link key={c.slug} to="/category/$name" params={{name:c.slug}}><div className="category-image"><img src={c.image} alt={c.name+' at L.W Pet Care'} loading="lazy"/></div><strong>{c.name}</strong></Link>)}</div></section>
+ <section className="brands-band"><div className="wrap brands"><div className="brands-title">Good brands.<br/>Great care.</div>{['Royal Canin','ACANA','ORIJEN','Farmina N&D'].map(b=><Link key={b} to="/brand/$name" params={{name:b.toLowerCase().replace(/[^a-z0-9]+/g,'-')}} className="brand-name">{b}<small>{b==='Royal Canin'?'HEALTH NUTRITION':b==='ACANA'?'BIOLOGICALLY APPROPRIATE':b==='ORIJEN'?'NOURISH AS NATURE INTENDED':'NATURAL & DELICIOUS'}</small></Link>)}</div></section>
+ <section className="wrap section"><div className="section-heading"><div><h2>From our shelves, with love</h2><p>Discover the favourites at your neighbourhood pet store.</p></div><Link to="/contact">Visit us <ArrowRight size={14}/></Link></div><div className="shelf-grid">{[{c:categories[0],title:'Nutrition for every wag',text:'Royal Canin, Acana, Orijen and more. Thoughtful food for every life stage.'},{c:categories[1],title:'Made for little royalty',text:'From kitten essentials to breed-specific nutrition, find their perfect fit.'},{c:categories[2],title:'Good things for good pets',text:'A well-earned reward, a happy little chew and one more reason to wag.'}].map(({c,title,text})=>c&&<Link to="/category/$name" params={{name:c.slug}} className="shelf-card" key={title}><img src={c.image} alt={title} loading="lazy"/><div><h3>{title}</h3><p>{text}</p><span className="inline-flex items-center gap-2 text-xs font-medium">Explore the range <ArrowRight size={14}/></span></div></Link>)}</div></section>
+ <section className="wrap section pt-0"><div className="groom-banner"><div><div className="eyebrow"><Scissors size={13}/> Fresh coats. Happy tails.</div><h2>A little pampering goes a long way.</h2><p>Gentle grooming, thoughtful hygiene and a feel-good finish at our Anand Vihar salon.</p></div><Button asChild><Link to="/grooming">Explore grooming <ArrowRight/></Link></Button></div></section></main>}

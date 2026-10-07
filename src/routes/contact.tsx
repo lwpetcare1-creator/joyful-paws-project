@@ -1,0 +1,5 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {meta,whatsapp} from '@/lib/store';
+import {Button} from '@/components/ui/button';
+export const Route=createFileRoute('/contact')({head:()=>meta('Visit us','Find us at B-129, Ground Floor, Anand Vihar, Delhi 110092.'),component:Page});
+function Page(){return <main className="wrap"><div className="page-head"><div className="eyebrow">L.W Pet Care · Visit us</div><h1>Your neighbourhood pet store</h1></div><article className="article"><p>Find us at B-129, Ground Floor, Anand Vihar, Delhi 110092.</p><h2>Call or WhatsApp</h2><p>+91 9217962828 · Instagram @l.w_pet_care. Free home delivery across Delhi NCR.</p><Button asChild><a href={whatsapp} target="_blank" rel="noreferrer">Chat on WhatsApp</a></Button><Button asChild variant="outline" className="ml-3"><a href="https://www.google.com/maps/search/?api=1&query=B-129+Anand+Vihar+Delhi+110092" target="_blank" rel="noreferrer">Get directions</a></Button></article></main>}
