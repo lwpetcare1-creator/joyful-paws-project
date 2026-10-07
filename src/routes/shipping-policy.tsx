@@ -1,5 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router';
 import {meta,whatsapp} from '@/lib/store';
 import {Button} from '@/components/ui/button';
-export const Route=createFileRoute('/shipping-policy')({head:()=>meta('Shipping policy','We offer free home delivery across Delhi NCR. Contact us to confirm availability and your delivery area before placing an order.'),component:Page});
+export const Route=createFileRoute('/shipping-policy')({staticData:{sitemap:false},head:()=>meta('Shipping policy','We offer free home delivery across Delhi NCR. Contact us to confirm availability and your delivery area before placing an order.','/shipping-policy'),component:Page});
 function Page(){return <main className="wrap"><div className="page-head"><div className="eyebrow">L.W Pet Care · Shipping policy</div><h1>Delivery with a little extra care</h1></div><article className="article"><p>We offer free home delivery across Delhi NCR. Contact us to confirm availability and your delivery area before placing an order.</p><h2>Draft policy — subject to owner approval</h2><p>Delivery timing is confirmed for each order. Keep your address and mobile number accurate. If a parcel is delayed or damaged, contact +91 9217962828 with your order details. Shipping outside Delhi NCR, delivery timelines and any additional charges must be confirmed by the store.</p></article></main>}

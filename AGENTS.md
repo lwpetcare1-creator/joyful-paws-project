@@ -16,3 +16,6 @@
 - Store uploaded media in Lovable Assets pointers; native generated editorial imagery stays imported in the project.
 - Customer profiles are created idempotently after verified sign-in instead of modifying the managed auth schema.
 - Razorpay and ordering remain disconnected until real account credentials and inventory are supplied; never simulate a paid order.
+
+- Derive sitemap static URLs from explicit route decisions; omit draft policy and dynamic catalogue pages until they contain approved public content, avoiding empty discovery targets.
+- Keep canonical and social URLs self-referencing in the shared leaf metadata helper; root holds sitewide defaults only.

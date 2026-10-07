@@ -24,6 +24,7 @@ import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BrandNameRouteImport } from './routes/brand.$name'
 import { Route as CategoryNameRouteImport } from './routes/category.$name'
@@ -104,6 +105,11 @@ const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
   path: '/shipping-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/shipping-policy': typeof ShippingPolicyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/brand/$name': typeof BrandNameRoute
   '/category/$name': typeof CategoryNameRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/shipping-policy': typeof ShippingPolicyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/brand/$name': typeof BrandNameRoute
   '/category/$name': typeof CategoryNameRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/shipping-policy': typeof ShippingPolicyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/brand/$name': typeof BrandNameRoute
   '/category/$name': typeof CategoryNameRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/reset-password'
     | '/shipping-policy'
+    | '/sitemap.xml'
     | '/terms'
     | '/brand/$name'
     | '/category/$name'
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/reset-password'
     | '/shipping-policy'
+    | '/sitemap.xml'
     | '/terms'
     | '/brand/$name'
     | '/category/$name'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/reset-password'
     | '/shipping-policy'
+    | '/sitemap.xml'
     | '/terms'
     | '/brand/$name'
     | '/category/$name'
@@ -271,6 +283,7 @@ export interface RootRouteChildren {
   RefundPolicyRoute: typeof RefundPolicyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ShippingPolicyRoute: typeof ShippingPolicyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   BrandNameRoute: typeof BrandNameRoute
   CategoryNameRoute: typeof CategoryNameRoute
@@ -384,6 +397,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShippingPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -431,6 +451,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundPolicyRoute: RefundPolicyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ShippingPolicyRoute: ShippingPolicyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   BrandNameRoute: BrandNameRoute,
   CategoryNameRoute: CategoryNameRoute,

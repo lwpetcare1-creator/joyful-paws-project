@@ -1,5 +1,5 @@
 import {createFileRoute} from '@tanstack/react-router';
 import {meta,whatsapp} from '@/lib/store';
 import {Button} from '@/components/ui/button';
-export const Route=createFileRoute('/about')({head:()=>meta('Our story','At Louis Wilson Pet Care, we treat your pets like family. Our Anand Vihar store brings together dog and cat food, trusted nutrition brands, treats, to'),component:Page});
+export const Route=createFileRoute('/about')({staticData:{sitemap:true},head:()=>meta('Our story','At Louis Wilson Pet Care, we treat your pets like family. Our Anand Vihar store brings together dog and cat food, trusted nutrition brands, treats, to','/about'),component:Page});
 function Page(){return <main className="wrap"><div className="page-head"><div className="eyebrow">L.W Pet Care · Our story</div><h1>A neighbourhood store. A family of paws.</h1></div><article className="article"><p>At Louis Wilson Pet Care, we treat your pets like family. Our Anand Vihar store brings together dog and cat food, trusted nutrition brands, treats, toys, everyday essentials and gentle grooming.</p><h2>Care for every life stage</h2><p>Explore Royal Canin, Acana, Orijen, Farmina N&D and more. For veterinary diets, please follow your veterinarian’s recommendation.</p></article></main>}
