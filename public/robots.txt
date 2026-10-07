@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://joyful-paws-project.lovable.app/sitemap.xml

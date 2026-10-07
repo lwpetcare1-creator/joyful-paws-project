@@ -1,6 +1,6 @@
 # L.W Pet Care
 
-- [x] Review SEO foundations and inspect /dogs; results ready for approval
+- [ ] Verify approved SEO metadata and router-derived sitemap corrections
 
 - [x] Design system, home, catalogue browsing, category/brand search and initial product views
 - [x] Cloud catalogue schema and 36 draft products from supplied catalogue

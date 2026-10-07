@@ -7,7 +7,7 @@ import {Button} from '@/components/ui/button';
 import {getAdminData,saveProduct,removeProduct} from '@/lib/catalogue.functions';
 import {meta,money,brands} from '@/lib/store';
 import {useStore} from '@/components/store-shell';
-export const Route=createFileRoute('/admin')({head:()=>meta('Store management','Owner-only product and order management for L.W Pet Care.'),component:Admin});
+export const Route=createFileRoute('/admin')({staticData:{sitemap:"exclude-subtree"},head:()=>meta('Store management','Owner-only product and order management for L.W Pet Care.','/admin',{noindex:true}),component:Admin});
 function Admin(){const {userName}=useStore();const fetchAdmin=useServerFn(getAdminData);const save=useServerFn(saveProduct);const remove=useServerFn(removeProduct);const qc=useQueryClient();const {data,error,isLoading}=useQuery({queryKey:['admin',userName],queryFn:()=>fetchAdmin(),enabled:!!userName,retry:false});const [tab,setTab]=useState('Products');const [editing,setEditing]=useState<string|null>(null);const [message,setMessage]=useState('');const [busy,setBusy]=useState(false);const current=data?.products.find(p=>p.id===editing);const variant=current?.product_variants[0];
  if(!userName)return <main className="wrap section"><div className="page-head"><h1>Store management</h1><p>Sign in with your owner account to manage the store.</p><Button asChild><Link to="/account">Sign in</Link></Button></div></main>;
  if(error)return <main className="wrap section"><h1>Owner access required</h1><p>{error.message}</p><p>Contact the store owner to request access.</p></main>;
