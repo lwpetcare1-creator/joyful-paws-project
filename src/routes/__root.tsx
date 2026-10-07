@@ -124,6 +124,7 @@ function RootComponent() {
   useEffect(() => {
     const {data} = supabase.auth.onAuthStateChange(event => {
       if (!["SIGNED_IN", "SIGNED_OUT", "USER_UPDATED"].includes(event)) return;
+      window.dispatchEvent(new Event('lw-auth-change'));
       router.invalidate();
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
     });

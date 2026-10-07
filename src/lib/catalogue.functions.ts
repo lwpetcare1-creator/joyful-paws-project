@@ -19,7 +19,8 @@ const productInput=z.object({id:z.string().uuid().optional(),name:z.string().min
 export const saveProduct=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((data:unknown)=>productInput.parse(data)).handler(async({context,data})=>{
  const {data:admin}=await context.supabase.rpc('has_role',{_user_id:context.userId,_role:'admin'});if(!admin)throw new Error('Owner access required.');
  if(data.status==='published'&&(!data.pack_size||!data.price||!data.mrp))throw new Error('Add a pack size, MRP and selling price before publishing.');
- const {id,pack_size,price,mrp,stock,sku,...product}=data;
+ const {id,pack_size,price,mrp,stock,sku,image_url,...fields}=data;
+ const product={...fields,image_url:image_url||null};
  const request=id?context.supabase.from('products').update(product).eq('id',id):context.supabase.from('products').insert(product);
  const {data:row,error}=await request.select('id').single();if(error)throw error;
  const {data:existing,error:readError}=await context.supabase.from('product_variants').select('id').eq('product_id',row.id).limit(1);if(readError)throw readError;
