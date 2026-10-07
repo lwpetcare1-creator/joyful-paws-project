@@ -1,5 +1,7 @@
 # L.W Pet Care
 
+- [ ] Review SEO, starting with /dogs
+
 - [ ] Design system, home, catalogue browsing, search and product views
 - [ ] Cloud catalogue schema and draft products from supplied catalogue
 - [ ] Grooming brochure, contact, about and draft policy pages
