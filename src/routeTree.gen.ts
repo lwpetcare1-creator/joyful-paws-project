@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CatsRouteImport } from './routes/cats'
+import { Route as DogsRouteImport } from './routes/dogs'
+import { Route as BrandNameRouteImport } from './routes/brand.$name'
+import { Route as CategoryNameRouteImport } from './routes/category.$name'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatsRoute = CatsRouteImport.update({
+  id: '/cats',
+  path: '/cats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DogsRoute = DogsRouteImport.update({
+  id: '/dogs',
+  path: '/dogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandNameRoute = BrandNameRouteImport.update({
+  id: '/brand/$name',
+  path: '/brand/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoryNameRoute = CategoryNameRouteImport.update({
+  id: '/category/$name',
+  path: '/category/$name',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cats': typeof CatsRoute
+  '/dogs': typeof DogsRoute
+  '/brand/$name': typeof BrandNameRoute
+  '/category/$name': typeof CategoryNameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cats': typeof CatsRoute
+  '/dogs': typeof DogsRoute
+  '/brand/$name': typeof BrandNameRoute
+  '/category/$name': typeof CategoryNameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cats': typeof CatsRoute
+  '/dogs': typeof DogsRoute
+  '/brand/$name': typeof BrandNameRoute
+  '/category/$name': typeof CategoryNameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/cats' | '/dogs' | '/brand/$name' | '/category/$name'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/cats' | '/dogs' | '/brand/$name' | '/category/$name'
+  id: '__root__' | '/' | '/cats' | '/dogs' | '/brand/$name' | '/category/$name'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatsRoute: typeof CatsRoute
+  DogsRoute: typeof DogsRoute
+  BrandNameRoute: typeof BrandNameRoute
+  CategoryNameRoute: typeof CategoryNameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cats': {
+      id: '/cats'
+      path: '/cats'
+      fullPath: '/cats'
+      preLoaderRoute: typeof CatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dogs': {
+      id: '/dogs'
+      path: '/dogs'
+      fullPath: '/dogs'
+      preLoaderRoute: typeof DogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand/$name': {
+      id: '/brand/$name'
+      path: '/brand/$name'
+      fullPath: '/brand/$name'
+      preLoaderRoute: typeof BrandNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$name': {
+      id: '/category/$name'
+      path: '/category/$name'
+      fullPath: '/category/$name'
+      preLoaderRoute: typeof CategoryNameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatsRoute: CatsRoute,
+  DogsRoute: DogsRoute,
+  BrandNameRoute: BrandNameRoute,
+  CategoryNameRoute: CategoryNameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
